@@ -55,6 +55,7 @@ public class TarjetaServiceImplement implements TarjetaServiceInterface {
         if (tarjetaOpt.isPresent()) {
             Tarjeta tarjeta = tarjetaOpt.get();
             tarjeta.setEstadoActivacion(true);
+            tarjeta.setBloqueo(false);
             tarjetaRepository.save(tarjeta);
 
             TarjetaResponseDto response = new TarjetaResponseDto();
