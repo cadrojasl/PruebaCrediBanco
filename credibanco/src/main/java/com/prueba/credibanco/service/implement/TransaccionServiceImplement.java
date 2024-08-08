@@ -54,7 +54,7 @@ public class TransaccionServiceImplement implements TransaccionServiceInterface 
         if (transaccionOpt.isPresent()) {
             Transacciones transaccion = transaccionOpt.get();
             if (transaccion.getFechaTransaccion().isAfter(LocalDateTime.now().minusHours(24)) &&
-                transaccion.getCardId().equals(cardId)) {
+                transaccion.getCardId().equals(cardId) && transaccion.getEstadoAnulado().equals(false)) {
                 transaccion.setEstadoAnulado(true);
                 Tarjeta tarjeta = tarjetaRepository.findByCardId(cardId).get();
                 tarjeta.setBalance(tarjeta.getBalance().add(transaccion.getMonto()));
